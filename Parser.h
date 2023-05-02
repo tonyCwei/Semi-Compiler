@@ -378,7 +378,7 @@ public:
         } else {
             OutProductionRules.at(i) += "R18 Error, ( expected\n";
         }
-        myInstrTable.GenInstr("LABEL", " ");
+        //myInstrTable.GenInstr("LABEL", " ");
     }
 
     void R18P(const vector<pair<string, string>> &LexicalAnalysis, vector<string> &OutProductionRules, int& i) {
@@ -386,9 +386,11 @@ public:
         string lexeme = i < n ? LexicalAnalysis[i].second : " ";
         if (lexeme == "fi") {
             OutProductionRules.at(i) += "<If>’ ::= fi\n";
+            myInstrTable.GenInstr("LABEL", " ");
         } else if (lexeme == "else") {
             OutProductionRules.at(i) += "<If>’ ::= else <Statement> fi\n";
             i++;
+            myInstrTable.GenInstr("LABEL", " ");
             R15(LexicalAnalysis, OutProductionRules, i);
             //myInstrTable.backPatch();
         }  

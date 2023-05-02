@@ -1,9 +1,8 @@
 #
+int low,high ;
 #
-     if (low  <=  high )  
+     if (low  !=  high )  
          {  
            put (low);
-         } else { 
-	   put (low);
-	  }
-     fi 
+         } 
+     fi

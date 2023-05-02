@@ -1,0 +1,242 @@
+TOKEN:SEPARETOR              LEXEME:#
+<Rat23S> ::= <Opt Function Definitions> # <Opt Declaration List> # <Statement List>
+<Opt Function Definitions> ::= <Empty>
+<Empty> ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:int
+<Opt Declaration List> ::= <Declaration List>
+<Declaration List>  ::= <Declaration> ; <Declaration List>’
+<Declaration> ::= <Qualifier> <IDs>
+ <Qualifier> ::= int
+
+TOKEN:IDENTIFIER              LEXEME:i
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:,
+<IDs>’ ::= ,<IDs>
+
+TOKEN:IDENTIFIER              LEXEME:max
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:,
+<IDs>’ ::= ,<IDs>
+
+TOKEN:IDENTIFIER              LEXEME:sum
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:;
+<IDs>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:#
+<Declaration List>’ ::= Epsilon
+
+TOKEN:IDENTIFIER              LEXEME:sum
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Assign>
+<Assign> ::=  <Identifier> = <Expression> ;
+
+TOKEN:OPERATOR              LEXEME:=
+
+TOKEN:INTEGAR              LEXEME:0
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Integer>
+
+TOKEN:SEPARETOR              LEXEME:;
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+TOKEN:IDENTIFIER              LEXEME:i
+<Statement List>’ ::= <Statement List>
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Assign>
+<Assign> ::=  <Identifier> = <Expression> ;
+
+TOKEN:OPERATOR              LEXEME:=
+
+TOKEN:INTEGAR              LEXEME:1
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Integer>
+
+TOKEN:SEPARETOR              LEXEME:;
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:get
+<Statement List>’ ::= <Statement List>
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Scan>
+<Scan> ::= get (<IDs>);
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:max
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:)
+<IDs>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:;
+
+TOKEN:KEYWORD              LEXEME:while
+<Statement List>’ ::= <Statement List>
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <While>
+<While> ::= while ( <Condition> ) <Statement> endwhile
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:i
+<Condition> ::=     <Expression>  <Relop>   <Expression>
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:OPERATOR              LEXEME:<
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+<Relop> ::=  <
+
+TOKEN:IDENTIFIER              LEXEME:max
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:SEPARETOR              LEXEME:)
+<Primary>’ := Epsilon
+
+TOKEN:SEPARETOR              LEXEME:{
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+<Statement> ::=   <Compound>
+<Compound> ::= { <Statement List> }
+
+TOKEN:IDENTIFIER              LEXEME:sum
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Assign>
+<Assign> ::=  <Identifier> = <Expression> ;
+
+TOKEN:OPERATOR              LEXEME:=
+
+TOKEN:IDENTIFIER              LEXEME:sum
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:OPERATOR              LEXEME:+
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’  ::= + <Term><Expression>’
+
+TOKEN:IDENTIFIER              LEXEME:i
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:SEPARETOR              LEXEME:;
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+TOKEN:IDENTIFIER              LEXEME:i
+<Statement List>’ ::= <Statement List>
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Assign>
+<Assign> ::=  <Identifier> = <Expression> ;
+
+TOKEN:OPERATOR              LEXEME:=
+
+TOKEN:IDENTIFIER              LEXEME:i
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:OPERATOR              LEXEME:+
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’  ::= + <Term><Expression>’
+
+TOKEN:INTEGAR              LEXEME:1
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Integer>
+
+TOKEN:SEPARETOR              LEXEME:;
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:}
+<Statement List>’ ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:endwhile
+
+TOKEN:KEYWORD              LEXEME:put
+<Statement List>’ ::= <Statement List>
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Print>
+<Print> ::= put (<Expression>);
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:sum
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:OPERATOR              LEXEME:+
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’  ::= + <Term><Expression>’
+
+TOKEN:IDENTIFIER              LEXEME:max
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:SEPARETOR              LEXEME:)
+<Primary>’ := Epsilon
+
+TOKEN:SEPARETOR              LEXEME:;
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+Address          Op            Oprnd
+1             PUSHI            0
+2             POPM            5002
+3             PUSHI            1
+4             POPM            5000
+5             IN            
+6             POPM            5001
+7             LABEL             
+8             PUSHM            5000
+9             PUSHM            5001
+10             LES             
+11             JMPZ            21
+12             PUSHM            5002
+13             PUSHM            5000
+14             ADD             
+15             POPM            5002
+16             PUSHM            5000
+17             PUSHI            1
+18             ADD             
+19             POPM            5000
+20             JMP            7
+21             PUSHM            5002
+22             PUSHM            5001
+23             ADD             
+24             OUT            
+
+
+Identifier          MemoryLocation            Type
+i                          5000            integer
+max                          5001            integer
+sum                          5002            integer

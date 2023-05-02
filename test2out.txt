@@ -1,0 +1,127 @@
+TOKEN:SEPARETOR              LEXEME:#
+<Rat23S> ::= <Opt Function Definitions> # <Opt Declaration List> # <Statement List>
+<Opt Function Definitions> ::= <Empty>
+<Empty> ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:int
+<Opt Declaration List> ::= <Declaration List>
+<Declaration List>  ::= <Declaration> ; <Declaration List>’
+<Declaration> ::= <Qualifier> <IDs>
+ <Qualifier> ::= int
+
+TOKEN:IDENTIFIER              LEXEME:low
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:,
+<IDs>’ ::= ,<IDs>
+
+TOKEN:IDENTIFIER              LEXEME:high
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:;
+<IDs>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:#
+<Declaration List>’ ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:if
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <If>
+<If> ::= if ( <Condition> ) <Statement><If>’
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:low
+<Condition> ::=     <Expression>  <Relop>   <Expression>
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:OPERATOR              LEXEME:<=
+<Primary>’ := Epsilon
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+<Relop> ::=  <=
+
+TOKEN:IDENTIFIER              LEXEME:high
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:SEPARETOR              LEXEME:)
+<Primary>’ := Epsilon
+
+TOKEN:SEPARETOR              LEXEME:{
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+<Statement> ::=   <Compound>
+<Compound> ::= { <Statement List> }
+
+TOKEN:KEYWORD              LEXEME:put
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Print>
+<Print> ::= put (<Expression>);
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:low
+<Expression>   ::= <Term><Expression>’
+<Term>    ::=   <Factor><Term>’
+<Factor> ::= <Primary>
+<Primary> ::= <Identifier><Primary>'
+
+TOKEN:SEPARETOR              LEXEME:)
+<Primary>’ := Epsilon
+
+TOKEN:SEPARETOR              LEXEME:;
+<Term>’ ::= Epsilon
+<Expression>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:}
+<Statement List>’ ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:else
+<If>’ ::= else <Statement> fi
+
+TOKEN:SEPARETOR              LEXEME:{
+<Statement> ::=   <Compound>
+<Compound> ::= { <Statement List> }
+
+TOKEN:KEYWORD              LEXEME:get
+<Statement List> ::=   <Statement><Statement List>’
+<Statement> ::=   <Scan>
+<Scan> ::= get (<IDs>);
+
+TOKEN:SEPARETOR              LEXEME:(
+
+TOKEN:IDENTIFIER              LEXEME:high
+<IDs> ::= <Identifier><IDs>’
+
+TOKEN:SEPARETOR              LEXEME:)
+<IDs>’ ::= Epsilon
+
+TOKEN:SEPARETOR              LEXEME:;
+
+TOKEN:SEPARETOR              LEXEME:}
+<Statement List>’ ::= Epsilon
+
+TOKEN:KEYWORD              LEXEME:fi
+<Statement List>’ ::= Epsilon
+
+Address          Op            Oprnd
+1             PUSHM            5000
+2             PUSHM            5001
+3             LEQ             
+4             JMPZ            7
+5             PUSHM            5000
+6             OUT            
+7             LABEL             
+8             IN            
+9             POPM            5001
+
+
+Identifier          MemoryLocation            Type
+low                          5000            integer
+high                          5001            integer
