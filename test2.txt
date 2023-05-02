@@ -1,0 +1,16 @@
+function convert1x (fahr int) real low;
+{
+           return 5 + 9 / (fahr - 32);
+}
+
+#
+   
+#
+     if (low  <=  high )  
+         {  
+           put (low);
+         } 
+     fi
+
+  
+	
