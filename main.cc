@@ -105,12 +105,13 @@ int main() {
 
   //To Output File
   ofstream outFile(string("Output.txt"));
-  if (outFile.is_open()) {       
-  for (int i = 0; i < n; i++) {
-    outFile << "TOKEN:" << LexicalAnalysis[i].first <<"              " <<  "LEXEME:" << LexicalAnalysis[i].second << "\n";
-    outFile << ProductionRules[i];
-    outFile << "\n";
-  }
+  if (outFile.is_open()) { 
+  // Output production rules        
+  // for (int i = 0; i < n; i++) {
+  //   outFile << "TOKEN:" << LexicalAnalysis[i].first <<"              " <<  "LEXEME:" << LexicalAnalysis[i].second << "\n";
+  //   outFile << ProductionRules[i];
+  //   outFile << "\n";
+  // }
     MyParser.PrintInstrTable(outFile);
     outFile << "\n" << "\n";
     MyParser.PrintSymbolTable(outFile);
